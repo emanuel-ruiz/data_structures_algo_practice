@@ -191,8 +191,26 @@ class LinkedList:
             temp = temp.next
         return temp;
 
+    def has_loop(self):  #use the Floyd's cycle finding algorithm
+        if self.length == 0 or self.length == 1:
+            return False;
+    
+        slow = self.head;
+        fast = self.head;
+        #if there is a loop, eventually they will meet 
+        while fast is not None and fast.next is not None:
+            fast = fast.next.next;
+            slow = slow.next;
+
+            if slow == fast:
+                return True;
+
+        return False;
 
 
+
+
+    
 
 
 
