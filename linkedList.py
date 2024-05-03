@@ -207,6 +207,31 @@ class LinkedList:
 
         return False;
 
+    def partition_list(self, x):
+        if self.head == self.tail or self.head == None:
+            return; 
+
+        temp = self.head;
+        hLess = Node(0);
+        hMore = Node(0);
+        lCount = 0;
+        mCount = 0;
+        while temp is not None:
+            if temp.value < x:
+                if lCount == 0:
+                    hLess = temp;
+                    count += 1
+                less.next = temp;
+                less = temp;
+            else:
+                if mCount == 0:
+                    hMore = temp;
+
+# on 0 count make the head the first less than
+# create a less than and add to that 
+# create a head for more and a more than 
+#combine at the end.
+
 
    
         
