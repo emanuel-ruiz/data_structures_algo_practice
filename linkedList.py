@@ -208,17 +208,51 @@ class LinkedList:
         return False;
 
 
+   
+        
+
+        
+
+        
 
 
+
+
+
+
+
+def find_kth_from_end(llist, k):
+    if k < 0: # bounds check
+        return None;
+    if llist.head == None: #check that the linked list is not empty
+        return None;
+    if llist.head == llist.tail and k ==1: 
+        return llist.head;
     
+    fast = llist.head;
+    slow = llist.head;
+    #traverse the linked list up to k position for the first pointer
+    #This guarantees that there will be k difference between fast and slow pointers
+    #if k is greater than the length of the structure then it will return none. 
+    for _ in range(k):
+        fast = fast.next;
+        if fast == None:
+            return None;
+    while fast is not None:
+        slow = slow.next;
+        fast = fast.next;
+    return slow;
 
 
 
-            
 
 
 llist = LinkedList(34);
-llist.append(3);
+# llist.append(33);
+# llist.append(13);
+# llist.append(8);
+# llist.append(7);
+# llist.append(2);
 
 
 
@@ -226,7 +260,7 @@ llist.append(3);
 
 llist.print_list();
 print('******************');
-print(llist.find_middle_node().value);
+print(find_kth_from_end(llist, 1).value)
 
 
 
