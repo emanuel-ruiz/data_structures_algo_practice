@@ -167,7 +167,15 @@ class LinkedList:
             before = temp
             temp = after
         return True;
-            
+    
+    #Coding Exercise 14 Find Middle Node;
+    def middle_node(self):
+        if self.length == 0:
+            return None;
+        if self.length == 1:
+            return self.head;
+        middle = self.length //2;
+        return self.get(middle);
 
 
 
@@ -177,17 +185,18 @@ class LinkedList:
 
 
 llist = LinkedList(34);
-llist.append(3);
-llist.append(35);
-llist.prepend(45);
+# llist.append(3);
+# llist.append(35);
+# llist.prepend(45);
 
 
-llist.set_value(2, 69);
-llist.insert(3, 44)
+# llist.set_value(2, 69);
+llist.pop();
 llist.print_list();
 print('******************');
 llist.reverse();
 llist.print_list();
+
 
 
 
