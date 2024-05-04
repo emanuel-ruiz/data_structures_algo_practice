@@ -207,6 +207,35 @@ class LinkedList:
 
         return False;
 
+    """This is my initial pass of the algorithm
+        After reviewing the solution I see that it was unneccessary to create so many dummy nodes
+        In total I would only need 4
+        psuedo code
+
+        create two dummy nodes with value 0 //this will be the start of the list
+        create two more nodes and set them equal to the first
+
+        //no need for counters
+        set temp to head
+        traverse with while loop
+            if less than x 
+                less than node.next = temp
+                less node = temp
+            else
+                more than node.next = temp
+                more node = temp
+
+            temp = temp.next;
+
+
+        set less and more nodes.next = None
+
+        less.next = more head node.next
+        self.head = less head node.next
+
+            
+        
+    """
     def partition_list(self, x):
         #if there is only one node or the list is empty return without changing the linked list
         if self.head == self.tail or self.head == None:
@@ -303,7 +332,7 @@ llist.append(2);
 
 llist.print_list();
 print('******************');
-llist.partition_list(3);
+llist.partition_list(33);
 llist.print_list();
 
 
