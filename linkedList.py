@@ -231,11 +231,11 @@ class LinkedList:
                     lTail = hLess;
                     temp = temp.next;
                     lCount += 1
-
-                less.next = temp; 
-                less = temp;
-                lTail = less; 
-                temp = temp.next;
+                else:
+                    less.next = temp; 
+                    less = temp;
+                    lTail = less; 
+                    temp = temp.next;
             else:
                 if mCount == 0:
                     hMore = temp;
@@ -243,10 +243,11 @@ class LinkedList:
                     more = hMore;
                     temp = temp.next;
                     mCount += 1;
-                more.next = temp;
-                more = temp;
-                mTail = more;
-                temp = temp.next;
+                else:
+                    more.next = temp;
+                    more = temp;
+                    mTail = more;
+                    temp = temp.next;
         
         # make sure that previous links are severed
         if mTail is not None:
@@ -259,25 +260,6 @@ class LinkedList:
                 lTail.next = None; #prevent loop
         else:
             self.head = hMore;
-
-
-
-
-# on 0 count make the head the first less than
-# create a less than and add to that 
-# create a head for more and a more than 
-#combine at the end.
-
-
-   
-        
-
-        
-
-        
-
-
-
 
 
 
@@ -321,7 +303,7 @@ llist.append(2);
 
 llist.print_list();
 print('******************');
-llist.partition_list(9);
+llist.partition_list(3);
 llist.print_list();
 
 
