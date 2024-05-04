@@ -208,24 +208,60 @@ class LinkedList:
         return False;
 
     def partition_list(self, x):
+        #if there is only one node or the list is empty return without changing the linked list
         if self.head == self.tail or self.head == None:
             return; 
 
+
         temp = self.head;
-        hLess = Node(0);
-        hMore = Node(0);
-        lCount = 0;
+        #capture the starting nodes of the partitions
+        hLess = None; #head of less than 
+        hMore = None; #head of more than
+        less = None;     
+        lTail = None; # tail of last less item
+        mTail = None;
+        more = None;
+        lCount = 0; 
         mCount = 0;
         while temp is not None:
             if temp.value < x:
-                if lCount == 0:
-                    hLess = temp;
-                    count += 1
-                less.next = temp;
+                if lCount == 0: #capture first item that is less than
+                    hLess = temp; #set the head of the less than nodes
+                    less = hLess; #needed to add to the less than list without forgett
+                    lTail = hLess;
+                    temp = temp.next;
+                    lCount += 1
+
+                less.next = temp; 
                 less = temp;
+                lTail = less; 
+                temp = temp.next;
             else:
                 if mCount == 0:
                     hMore = temp;
+                    mTail = hMore;
+                    more = hMore;
+                    temp = temp.next;
+                    mCount += 1;
+                more.next = temp;
+                more = temp;
+                mTail = more;
+                temp = temp.next;
+        
+        # make sure that previous links are severed
+        if mTail is not None:
+            mTail.next = None
+        if hLess is not None:
+            self.head = hLess;
+            if hMore is not None:
+                lTail.next = hMore;
+            else:
+                lTail.next = None; #prevent loop
+        else:
+            self.head = hMore;
+
+
+
 
 # on 0 count make the head the first less than
 # create a less than and add to that 
@@ -273,11 +309,11 @@ def find_kth_from_end(llist, k):
 
 
 llist = LinkedList(34);
-# llist.append(33);
-# llist.append(13);
-# llist.append(8);
-# llist.append(7);
-# llist.append(2);
+llist.append(33);
+llist.append(13);
+llist.append(8);
+llist.append(7);
+llist.append(2);
 
 
 
@@ -285,7 +321,8 @@ llist = LinkedList(34);
 
 llist.print_list();
 print('******************');
-print(find_kth_from_end(llist, 1).value)
+llist.partition_list(9);
+llist.print_list();
 
 
 
