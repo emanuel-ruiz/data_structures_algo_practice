@@ -344,6 +344,31 @@ class LinkedList:
 
         return True;
 
+    #converts a binary list into a decimal value
+    #returns 0 if empty
+    def binary_to_decimal(self):
+        if self.head is None:
+            return 0;
+        if self.head.next == None:
+            if self.head.value == 0:
+                return 0;
+            if self.head.value == 1:
+                return 1;
+        
+        temp = self.head;
+        value = 0;
+        exponent = self.length -1;
+        while temp is not None:
+            if temp.value == 0:
+                # value is a zero and therefore does not add to the total
+                exponent -=1;
+                temp = temp.next;
+                continue;
+            value += 2 ** exponent;
+            exponent -= 1;
+            temp = temp.next;
+        
+        return value;
 
     
 
@@ -352,12 +377,12 @@ class LinkedList:
 
 
 
-llist = LinkedList(34);
-llist.append(33);
-llist.append(13);
-llist.append(8);
-llist.append(7);
-llist.append(2);
+llist = LinkedList(1);
+llist.append(0);
+llist.append(1);
+llist.append(1);
+llist.append(0);
+
 
 
 
@@ -365,8 +390,7 @@ llist.append(2);
 
 llist.print_list();
 print('******************');
-llist.partition_list(33);
-llist.print_list();
+print(llist.binary_to_decimal());
 
 
 
