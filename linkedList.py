@@ -370,6 +370,70 @@ class LinkedList:
         
         return value;
 
+    """Challenge
+    
+        Given two indeces, reverse the values within these two index
+
+        Assumption: the indeces will not be out of bounds
+        This linked list does not contain a tail member
+    """
+    def reverse_between(self, start_index, end_index):
+        #we will need to caputure the node at the start and end
+        count = 0;
+        temp = self.head;
+        pre_start = Node(0);
+        start_node = self.head;
+        end_node = None;
+        while temp is not None:
+            # capture the element prior to the start of the node
+            # given that the starting index is not 0
+            if count == start_index -1 and start_index != 0:
+                pre_start = temp;
+                temp = temp.next;
+                start_node = temp;
+                count += 1;
+            elif count == end_index:
+                end_node = temp;
+                temp = temp.next;
+                count += 1;
+                break;
+            else:
+                temp = temp.next;
+                count += 1;
+        
+        pre_start.next = end_node;
+        next = end_node.next;
+        current = start_node;
+        prev = None;
+        while current is not next:
+            after = current.next;
+            current.next = prev;
+            prev = current;
+            current = after;
+        start_node.next = next;
+        if start_index == 0:
+            self.head = pre_start.next;
+
+
+
+            
+
+        
+
+        
+
+
+        
+
+        
+            
+
+
+
+        
+
+
+
     
 
 
@@ -378,19 +442,23 @@ class LinkedList:
 
 
 llist = LinkedList(1);
-llist.append(0);
-llist.append(1);
-llist.append(1);
-llist.append(0);
+llist.append(2);
+llist.append(3);
+llist.append(4);
+llist.append(5);
+llist.append(6);
+llist.append(7);
+llist.append(8);
+llist.append(9);
 
 
 
 
 # llist.set_value(2, 69);
-
+llist.reverse_between(0,5);
 llist.print_list();
 print('******************');
-print(llist.binary_to_decimal());
+
 
 
 
