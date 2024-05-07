@@ -315,6 +315,39 @@ def find_kth_from_end(llist, k):
         fast = fast.next;
     return slow;
 
+def remove_duplicates(self):
+    #check whether the linked list is empty or has only one element
+    if self.head is None:
+        return False;
+    if self.head.next is None:
+        return True;
+
+    #create temp set to hold values
+    temp_set = {self.head.value};
+    current = self.head.next;
+    previous = self.head;
+    while current is not None: # searching for value in set is O(1) on average since it uses a hash
+        #check if value is in the set
+        if current.value in temp_set:
+            #if value is already present, then the previous node will point to the next on the list
+            #previous will not be updated since the following Node may also be a duplicate
+            previous.next = current.next;
+            current.next = None; #break the link to the duplicate Node
+            current = previous.next; # update current
+            self.length -=1; 
+        else:
+            #Node value is not present, therefore add the value to the set
+            temp_set.add(current.value);
+            #update previous and current
+            previous = current;
+            current = current.next;
+
+    return True;
+
+
+    
+
+
 
 
 
