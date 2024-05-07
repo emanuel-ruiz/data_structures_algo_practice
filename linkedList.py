@@ -293,56 +293,56 @@ class LinkedList:
 
 
 
-def find_kth_from_end(llist, k):
-    if k < 0: # bounds check
-        return None;
-    if llist.head == None: #check that the linked list is not empty
-        return None;
-    if llist.head == llist.tail and k ==1: 
-        return llist.head;
-    
-    fast = llist.head;
-    slow = llist.head;
-    #traverse the linked list up to k position for the first pointer
-    #This guarantees that there will be k difference between fast and slow pointers
-    #if k is greater than the length of the structure then it will return none. 
-    for _ in range(k):
-        fast = fast.next;
-        if fast == None:
+    def find_kth_from_end(llist, k):
+        if k < 0: # bounds check
             return None;
-    while fast is not None:
-        slow = slow.next;
-        fast = fast.next;
-    return slow;
+        if llist.head == None: #check that the linked list is not empty
+            return None;
+        if llist.head == llist.tail and k ==1: 
+            return llist.head;
+        
+        fast = llist.head;
+        slow = llist.head;
+        #traverse the linked list up to k position for the first pointer
+        #This guarantees that there will be k difference between fast and slow pointers
+        #if k is greater than the length of the structure then it will return none. 
+        for _ in range(k):
+            fast = fast.next;
+            if fast == None:
+                return None;
+        while fast is not None:
+            slow = slow.next;
+            fast = fast.next;
+        return slow;
 
-def remove_duplicates(self):
-    #check whether the linked list is empty or has only one element
-    if self.head is None:
-        return False;
-    if self.head.next is None:
+    def remove_duplicates(self):
+        #check whether the linked list is empty or has only one element
+        if self.head is None:
+            return False;
+        if self.head.next is None:
+            return True;
+
+        #create temp set to hold values
+        temp_set = {self.head.value};
+        current = self.head.next;
+        previous = self.head;
+        while current is not None: # searching for value in set is O(1) on average since it uses a hash
+            #check if value is in the set
+            if current.value in temp_set:
+                #if value is already present, then the previous node will point to the next on the list
+                #previous will not be updated since the following Node may also be a duplicate
+                previous.next = current.next;
+                current.next = None; #break the link to the duplicate Node
+                current = previous.next; # update current
+                self.length -=1; 
+            else:
+                #Node value is not present, therefore add the value to the set
+                temp_set.add(current.value);
+                #update previous and current
+                previous = current;
+                current = current.next;
+
         return True;
-
-    #create temp set to hold values
-    temp_set = {self.head.value};
-    current = self.head.next;
-    previous = self.head;
-    while current is not None: # searching for value in set is O(1) on average since it uses a hash
-        #check if value is in the set
-        if current.value in temp_set:
-            #if value is already present, then the previous node will point to the next on the list
-            #previous will not be updated since the following Node may also be a duplicate
-            previous.next = current.next;
-            current.next = None; #break the link to the duplicate Node
-            current = previous.next; # update current
-            self.length -=1; 
-        else:
-            #Node value is not present, therefore add the value to the set
-            temp_set.add(current.value);
-            #update previous and current
-            previous = current;
-            current = current.next;
-
-    return True;
 
 
     
