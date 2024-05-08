@@ -131,6 +131,28 @@ class DoubleLinkedList:
         self.length -= 1;
         return temp;
 
+    def swap_first_last(self):
+        if self.length == 0 or self.length == 1:
+            return;
+        temp = self.head.value;
+        self.head.value = self.tail.value;
+        self.tail.value = temp;
+
+    def reverse(self):
+        if self.length == 0 or self.length == 1:
+            return;
+
+        temp = self.head;
+        previous = None;
+        after = temp.next;
+        while temp is not None:
+            temp.previous = after;
+            temp.next = previous;
+            previous = temp;
+            temp = after;
+            after = after.next;
+
+
 dll = DoubleLinkedList(1);
 print(dll.insert(0,34))
 dll.prepend(2)
@@ -140,7 +162,7 @@ dll.append(5)
 dll.insert(1, 23)
 dll.insert(1, 24)
 dll.insert(1, 25)
-
+dll.swap_first_last()
 
 # print(dll.remove(5).value)
 print ("----------------")
