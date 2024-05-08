@@ -99,9 +99,8 @@ class DoubleLinkedList:
             return True;
 
     def insert(self, index, value):
-        if self.length == 0 and index == 0:
-            self.append(value);
-            return True;
+        if index == self.length:
+            return self.append(value);
         if index == 0:
             return self.prepend(value);
         temp = self.get(index -1);
