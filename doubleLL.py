@@ -157,20 +157,31 @@ class DoubleLinkedList:
             current = next; 
             
 
-        self.head = previous;
-        self.tail = tail;
+        self.head, self.tail = self.tail, self.head;
+        
+        return True;
+
+    def is_palindrome(self):
+        if self.length == 0 or self.length == 1:
+            return;
+
+        left = self.head;
+        right = self.tail;
+
+        while left != right and left.previous != right:
+            if left.value == right.value:
+                left = left.next;
+                right = right.previous;
+            else:
+                return False;
         return True;
 
 
+
 dll = DoubleLinkedList(1);
-dll.append(2);
-dll.append(3);
-dll.append(4);
-dll.append(5);
-dll.append(6);
-dll.append(7);
-dll.append(8);
-dll.reverse();
+dll.pop()
+# dll.append(1)
+print(dll.is_palindrome());
 
 # print(dll.remove(5).value)
 print ("----------------");
