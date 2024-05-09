@@ -139,31 +139,40 @@ class DoubleLinkedList:
         self.tail.value = temp;
 
     def reverse(self):
+        #check whether the list is empty or has only one element
         if self.length == 0 or self.length == 1:
             return;
 
-        temp = self.head;
-        previous = None;
-        after = temp.next;
-        while temp is not None:
-            temp.previous = after;
-            temp.next = previous;
-            previous = temp;
-            temp = after;
-            after = after.next;
+        #initial parameters
+        current = self.head; 
+        tail = current; #caputure the initial head, since it will become the tail
+        previous = None; 
+        next  = current.next;
+        while current is not None:
+            #each node will have to have it's previous and next pointers flipped
+            current.next = previous; # the previous node will now become the next node 
+            current.previous = next; # the next node will become the previous
+            previous = current; #Move the pointer forward in the list
+            current = next; 
+            if next is None: #the last node will have a next value of None which does not
+                #have a next value and therefore must break out of the loop
+                break;
+            next = next.next;
+
+        self.head = previous;
+        self.tail = tail;
+        return True;
 
 
 dll = DoubleLinkedList(1);
-print(dll.insert(0,34))
-dll.prepend(2)
-dll.prepend(4)
-dll.append(5)
-
-dll.insert(1, 23)
-dll.insert(1, 24)
-dll.insert(1, 25)
-dll.swap_first_last()
-
+# dll.append(2);
+# dll.append(3);
+# dll.append(4);
+# dll.append(5);
+# dll.append(6);
+# dll.append(7);
+# dll.append(8);
+dll.reverse();
 # print(dll.remove(5).value)
-print ("----------------")
+print ("----------------");
 dll.print_list()
