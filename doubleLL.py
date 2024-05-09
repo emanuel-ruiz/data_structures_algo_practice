@@ -176,13 +176,65 @@ class DoubleLinkedList:
                 return False;
         return True;
 
+    #after reading psuedo code of proper method
+    def swap_pairs(self):
+        if self.length <= 1:
+            return;
+
+        dummy = Node(0);
+        dummy.next = self.head;
+        prev = dummy;
+        
+    
+        first = dummy.next;
+        self.head = first.next;
+        while first is not None and first.next is not None:
+            second = first.next;
+            prev.next = second;
+            first.next = second.next;
+            second.next = first;
+            second.previous = prev;
+            first.previous = second;
+            
+            prev = first;
+            first = first.next;
+        self.head.previous = None;
+
+    #my failed attempt
+    def swap_pairs2(self):
+        if self.length <=1:
+            return; 
+
+        c_left = self.head;
+        self.head = c_left.next;
+        prev = None;
+        for _ in range(self.length//2):
+            c_right = c_left.next;
+            after = c_right.next;
+            c_left.previous = c_right;
+            c_left.next = after;
+            c_right.next = c_left;
+            c_right.previous = prev;
+            prev = c_left;
+            after.previous = c_left;
+            c_left = after;
+        
+        return;
+        
+        #had trouble figuring this one out
 
 
-dll = DoubleLinkedList(1);
-dll.pop()
-# dll.append(1)
-print(dll.is_palindrome());
 
-# print(dll.remove(5).value)
-print ("----------------");
-dll.print_list()
+
+
+
+
+my_dll_1 = DoubleLinkedList(1)
+my_dll_1.append(2)
+my_dll_1.append(3)
+my_dll_1.append(2)
+my_dll_1.append(5)
+
+
+my_dll_1.swap_pairs()
+my_dll_1.print_list()
