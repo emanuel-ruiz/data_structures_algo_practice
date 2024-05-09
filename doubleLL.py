@@ -147,17 +147,15 @@ class DoubleLinkedList:
         current = self.head; 
         tail = current; #caputure the initial head, since it will become the tail
         previous = None; 
-        next  = current.next;
+        
         while current is not None:
             #each node will have to have it's previous and next pointers flipped
+            next = current.next
             current.next = previous; # the previous node will now become the next node 
             current.previous = next; # the next node will become the previous
             previous = current; #Move the pointer forward in the list
             current = next; 
-            if next is None: #the last node will have a next value of None which does not
-                #have a next value and therefore must break out of the loop
-                break;
-            next = next.next;
+            
 
         self.head = previous;
         self.tail = tail;
@@ -165,14 +163,15 @@ class DoubleLinkedList:
 
 
 dll = DoubleLinkedList(1);
-# dll.append(2);
-# dll.append(3);
-# dll.append(4);
-# dll.append(5);
-# dll.append(6);
-# dll.append(7);
-# dll.append(8);
+dll.append(2);
+dll.append(3);
+dll.append(4);
+dll.append(5);
+dll.append(6);
+dll.append(7);
+dll.append(8);
 dll.reverse();
+
 # print(dll.remove(5).value)
 print ("----------------");
 dll.print_list()
