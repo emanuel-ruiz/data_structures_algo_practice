@@ -41,22 +41,12 @@ def sort_stack(input_list):
     while sorted_stack.is_empty() == False:
         input_list.push(sorted_stack.pop());
 
+# def merge_sort_stack(list, lowest, highest):
 
-    if stack_list.is_empty() == True:
-        return True;
+
+# def merge_sort(list):
     
-    sort_stack = Stack();
-    sort_stack.push(stack_list.pop());
-    
-    while stack_list.is_empty() == False:
-        temp = stack_list.pop();
-        
-        while sort_stack.is_empty() == False and sort_stack.peek() > temp:
-            stack_list.push(sort_stack.pop())
-        sort_stack.push(temp)
-        
-    while sort_stack.is_empty() == False:
-        stack_list.push(sort_stack.pop());
+#     merge_sort_stack(list, lowest, highest);
  
 
 myStack = Stack();
