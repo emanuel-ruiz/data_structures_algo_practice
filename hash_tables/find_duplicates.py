@@ -1,3 +1,4 @@
+#Finds and returns a list of values that repeated in the list
 def find_duplicates(list1):
 
     dupe = {}
@@ -21,6 +22,7 @@ print ( find_duplicates([1, 2, 3, 3, 3, 4, 4, 5]) )
 print ( find_duplicates([1, 1, 2, 2, 2, 3, 3, 3, 3]) )
 print ( find_duplicates([1, 1, 1, 2, 2, 2, 3, 3, 3, 3]) )
 print ( find_duplicates([]) )
+
 
 
 
