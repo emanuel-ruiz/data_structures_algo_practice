@@ -15,7 +15,17 @@ class Hash_Table:
         for i, val in enumerate(self.data_map):
             print(i, ": ", val);
 
+    def set_item(self, key, value):
+        index = self.__hash(key);
+        if self.data_map[index] == None:
+            self.data_map[index] = [];
+        self.data_map[index].append([key, value]);
+        return True;
 
 my_hash = Hash_Table(11);
+my_hash.set_item("Emanuel", 36);
+my_hash.set_item("Marika", 37);
+my_hash.set_item("Cats", 12);
+
 
 my_hash.print_table()
