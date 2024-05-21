@@ -34,18 +34,23 @@ class MaxHeap:
     def __init__(self):
         self.heap = [];
 
+    #Helper function to get left child index
     def _left_child(self, index):
         return 2 * index + 1;
 
+    #Helper function to get right child index
     def _right_child(self, index):
         return 2 * index + 2;
 
+    #Helper function to parent index
     def _parent(self, index):
         return (index-1) // 2;
 
+    #Helper Function that swaps the values at the given index
     def _swap(self, id1, id2):
         self.heap[id1], self.heap[id2] = self.heap[id2], self.heap[id1];
     
+    #Helper function used by remove() to sink down the last element after being swapped with the root
     def _sink_down(self, index):
         
         max_in = index;
@@ -54,26 +59,31 @@ class MaxHeap:
             left = self._left_child(index);
             right = self._right_child(index);
 
+            #Max value will be either the left or right child unless it is it correct location
             if left < len(self.heap) and self.heap[left] > self.heap[max_in]:
                 max_in = left;
 
             if right < len(self.heap) and self.heap[right] > self.heap[max_in]:
                 max_in = right;
     
+            # value is still not in it's correct location
             if index != max_in:
                 self._swap(index, max_in);
                 index = max_in;
+            # value is at its correct location
             else:
                 return;
 
-
+    # Function inserts value into it's correct location after placing it at the end
     def insert(self, val):
         self.heap.append(val);
         current = len(self.heap) - 1;
+        # swap values while parent's value is less than self. 
         while current > 0 and self.heap[current] > self.heap[self._parent(current)]:
             self._swap(current, self._parent(current));
             current = self._parent(current);
 
+    #Function removes and returns max value
     def remove(self):
         if len(self.heap) == 0:
             return None;
